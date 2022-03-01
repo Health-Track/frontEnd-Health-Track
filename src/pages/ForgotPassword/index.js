@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/logo.png';
 
-function Signin() {
+export default function ForgotPassword() {
   return (
     <>
       <div className="username-header" id="username-header" />
@@ -16,34 +16,21 @@ function Signin() {
           <p>
             <input type="text" id="email" value="" placeholder="E-mail" />
           </p>
-          <p>
-            <input type="password" id="password" value="" placeholder="Senha" />
-          </p>
           <p className="submit">
             <input
               type="submit"
               id="commit"
-              onClick="validatePassword(), validateEmail(), login()"
+              onClick="validateEmail()"
               className="submitBtn"
-              value="Entrar"
+              value="Recuperar"
             />
           </p>
         </form>
       </div>
-      <div id="footer">
-        <p>
-          Ainda não é cadastrado?
-          <Link to="/sign-up">Cadastrar</Link>
-        </p>
-        <p style={{ 'font-size': '10px' }}>
-          Esqueceu a senha?<a href="recuperacao_senha.html">Recuperar senha</a>
-        </p>
-      </div>
+
       <div id="footer" style={{ 'font-size': '10px' }}>
         <p>ENGENHARIA DE SOFTWARE</p>
       </div>
     </>
   );
 }
-
-export default Signin;

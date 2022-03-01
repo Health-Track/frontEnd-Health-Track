@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-// import Login from './pages/Login';
-
-import './App.css';
+import './styles/App.css';
 import HealthTrackRoutes from './routes';
 
 export default function App() {
@@ -11,6 +9,5 @@ export default function App() {
     <BrowserRouter>
       <HealthTrackRoutes />
     </BrowserRouter>
-    // <Login />
   );
 }
