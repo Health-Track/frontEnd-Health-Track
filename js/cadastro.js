@@ -26,7 +26,7 @@ async function create(user) {
         
         if (response.status == 201) {
             alert("Usuário criado com sucesso.");
-            window.location = ''; //referencia pro html da pagina logada
+            window.location = 'login.html'; //referencia pro html da pagina inicial
         }
         else {
             alert(data.message);
