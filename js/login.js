@@ -30,7 +30,7 @@ function validatePassword(){
 }
 
 async function sendLogin(user){
-    let url = 'https://projeto-psoft-igor-victor.herokuapp.com/api/v1/auth/login'; //path to backend 
+    let url = ''; //path to backend 
     
     try {
         let response = await fetch(url, {
