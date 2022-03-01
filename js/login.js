@@ -20,6 +20,11 @@ function validateEmail(){
 
 function validatePassword(){
     var password = document.getElementById("password").value;
+
+    if(password === ""){
+        alert("Senha vazia!")
+        return false;
+    }
     
     if(password.length >= 8){
         return true;
@@ -27,6 +32,19 @@ function validatePassword(){
         alert("Senha precisa ter pelo menos 8 caracteres")
         return false;
     }
+}
+
+function validatePasswordisEqual(){
+
+    var password = document.getElementById("password").value;
+    var passwordConfirm = document.getElementById("passwordConfirm").value;
+
+    if(password === passwordConfirm){
+        return true;
+    }else{
+        alert("Senhas difertentes!")
+    }
+
 }
 
 async function sendLogin(user){

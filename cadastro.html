@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<HTMl>
+<head>
+    <meta charset="utf-8">
+    <title>Health-Track</title>
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <script src="js/login.js"></script>
+    <div class="username-header" id="username-header"></div>
+    <a href="login.html"><img class="health-logo" src="img/logo_site.png" alt=""></a>
+    
+    <div class="form-comum">
+        <h1>Cadastro</h1>
+        <form action="javascript:void(0)">
+            <p><input type="text" id="name" value="" placeholder="Nome"></p>
+            <p><input type="text" id="lastName" value="" placeholder="Sobrenome"></p>
+            <p><input type="text" id="email" value="" placeholder="E-mail"></p>
+            <p><input type="text" id="password" value="" placeholder="Senha (Minimo 8 caracteres)"></p>
+            <p><input type="password" id="passwordConfirm" value="" placeholder="Confirmacao de senha"></p>
+            <p class="submit"><input type="submit" id="commit" onclick= "validatePasswordisEqual(), validateEmail(), login()"; class="submitBtn" value="Entrar"></p> 
+        </form>
+    </div>
+  
+
+    <div id="footer" style="font-size: 12px;">
+        <p>
+            ENGENHARIA DE SOFTWARE
+        </p>
+    </div>
+    
+</body>
+</HTMl>
