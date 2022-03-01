@@ -48,7 +48,7 @@ async function sendLogin(user){
             localStorage.setItem('token', json.token);
             localStorage.setItem('userID', json.userID);
             localStorage.setItem('userName', json.userName);
-            window.location = 'perfil.html';
+            window.location = 'perfil.html'; //should send user to logged home page 
         }
         else {
             localStorage.removeItem('token');
