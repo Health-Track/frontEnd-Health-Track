@@ -9,8 +9,22 @@ function createUser(){
     });
 }
 
+
+function validatePasswordisEqual(){
+
+    var password = document.getElementById("password").value;
+    var passwordConfirm = document.getElementById("password2").value;
+
+    if(password === password2){
+        return true;
+    }else{
+        alert("Senhas difertentes!")
+    }
+
+}
+
 async function create(user) {
-    let url = ''; //referencia pro back
+    let url = 'https://projeto-psoft-igor-victor.herokuapp.com/api/v1/auth/';
     
     try {
         let response = await fetch(url, {
@@ -26,7 +40,7 @@ async function create(user) {
         
         if (response.status == 201) {
             alert("Usuário criado com sucesso.");
-            window.location = 'login.html'; //referencia pro html da pagina inicial
+            window.location = 'index.html';
         }
         else {
             alert(data.message);

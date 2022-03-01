@@ -34,18 +34,7 @@ function validatePassword(){
     }
 }
 
-function validatePasswordisEqual(){
 
-    var password = document.getElementById("password").value;
-    var passwordConfirm = document.getElementById("password2").value;
-
-    if(password === password2){
-        return true;
-    }else{
-        alert("Senhas difertentes!")
-    }
-
-}
 
 async function sendLogin(user){
     let url = ''; //path to backend 
