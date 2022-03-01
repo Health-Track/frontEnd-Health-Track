@@ -13,7 +13,7 @@ function createUser(){
 function validatePasswordisEqual(){
 
     var password = document.getElementById("password").value;
-    var passwordConfirm = document.getElementById("password2").value;
+    var password2 = document.getElementById("password2").value;
 
     if(password === password2){
         return true;
