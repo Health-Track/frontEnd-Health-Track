@@ -4,24 +4,23 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color:seashell;
+  background-color: seashell;
   border-radius: 10px;
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
   margin-top: 30px;
 }
 
 body {
-  font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
   color: #404040;
   background: #0cd2a7;
-
 }
 
 .form-comum {
   margin: 30px auto;
   padding: 20px 20px 20px;
   width: 310px;
-  background:  white;
+  background: white;
   border-radius: 3px;
   box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -45,7 +44,8 @@ body {
   text-align: right;
 }
 
-.form-comum input[type=password], input[type=text] {
+.form-comum input[type='password'],
+input[type='text'] {
   width: 90%;
   margin: 5px;
   padding: 0 10px;
@@ -59,13 +59,14 @@ body {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
-.form-comum input[type=text]:focus, input[type=password]:focus {
+.form-comum input[type='text']:focus,
+input[type='password']:focus {
   border-color: #7dc9e2;
   outline-color: #dceefc;
   outline-offset: 0;
 }
 
-.form-comum input[type=submit] {
+.form-comum input[type='submit'] {
   padding: 0 18px;
   height: 29px;
   font-size: 12px;
@@ -82,7 +83,7 @@ body {
   cursor: pointer;
 }
 
-.form-comum input[type=submit]:active {
+.form-comum input[type='submit']:active {
   background: #cde5ef;
   border-color: #9eb9c2 #b3c0c8 #b4ccce;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
@@ -157,4 +158,25 @@ body {
   line-height: 16px;
   font-weight: normal;
   text-decoration: none;
+}
+.usuario {
+  display: flex;
+  align-items: center;
+}
+.usuarioAvatar {
+  float: left;
+  height: 75px;
+  width: 235px;
+  font-family: Veranda;
+}
+
+.usuarioNome {
+  float: right;
+  font-size: 14px;
+  margin-right: 12px;
+}
+
+.menuDropdown {
+  width: 20%;
+  height: 100%;
 }
