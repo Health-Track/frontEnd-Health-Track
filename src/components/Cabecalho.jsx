@@ -10,7 +10,7 @@ import {
   UserOutlined,
   ExportOutlined
 } from '@ant-design/icons';
-import { Menu, PageHeader, Button, Descriptions, Avatar } from 'antd';
+import { Menu, PageHeader, Button, Avatar } from 'antd';
 
 const { SubMenu } = Menu;
 
