@@ -1,0 +1,42 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  background-color: white;
+  font-size: 14px;
+}
+
+.footer-component {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-component span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.anticon-heart {
+  margin-left: 5px;
+}
+
+.anticon-heart > svg {
+  color: #C52B2B;
+  height: 20px;
+  width: 20px;
+}
+
+.anticon-github {
+  margin-left: 5px;
+}
+
+.anticon-github > svg {
+  color: #000000;
+}
