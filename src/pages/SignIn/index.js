@@ -9,7 +9,7 @@ import './style.css';
 function Signin() {
   return (
     <div className="signin-container">
-      <div className="logo-container">
+      <div className="signin-logo-container">
         <Link className="logo-link" to="/">
           <img className="health-logo" src={Logo} alt="" />
         </Link>
