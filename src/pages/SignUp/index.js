@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col } from 'antd';
 
 import Landing from '../../assets/landing.png';
 import Logo from '../../assets/logo.png';
@@ -9,15 +8,15 @@ import './style.css';
 
 function SignUp() {
   return (
-    <Row className="signup-container">
-      <Col className="background-container" span={12}>
+    <div className="signup-container">
+      <div className="signup-background-container" span={12}>
         <div>
           <Link to="/">
             <img src={Landing} alt="" />
           </Link>
         </div>
-      </Col>
-      <Col className="form-container" span={12}>
+      </div>
+      <div className="form-container" span={12}>
         <div className="signup-logo-container">
           <Link className="logo-link" to="/">
             <img className="health-logo" src={Logo} alt="" />
@@ -69,8 +68,8 @@ function SignUp() {
             </form>
           </div>
         </div>
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
 

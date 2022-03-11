@@ -8,18 +8,18 @@
   overflow: hidden;
 }
 
-.background-container {
+.signup-background-container {
   height: 100vh;
   width: 100%;
 }
 
-.background-container img{
+.signup-background-container img{
   height: 100%;
   width: 640px;
 }
 
 @media(max-width: 955px) {
-  .background-container {
+  .signup-background-container {
     display: none;
   }
 }
