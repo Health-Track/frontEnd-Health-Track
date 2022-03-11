@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../assets/logo.png';
+import Landing from '../../assets/landing.png';
 
 import './style.css';
 
 function SignUp() {
   return (
     <div className="signup-container">
-      <div className="logo-container">
-        <Link className="logo-link" to="/">
-          <img className="health-logo" src={Logo} alt="" />
-        </Link>
+      <div className="background-container">
+        <div>
+          <Link to="/">
+            <img src={Landing} alt="" />
+          </Link>
+        </div>
       </div>
       <div className="form-container">
         <div className="form-comum">

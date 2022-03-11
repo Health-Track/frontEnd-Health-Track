@@ -1,19 +1,37 @@
 .signup-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
+  overflow: hidden;
+}
+
+.background-container {
+  height: 100%;
+}
+
+.background-container img{
+  height: 100%;
+  width: 640px;
+}
+
+@media(max-width: 750px) {
+  .background-container {
+    display: none;
+  }
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0px;
 }
 
 .form-comum {
-  margin: 0px;
-  padding: 15px;
   width: 310px;
   background:  white;
   border-radius: 3px;

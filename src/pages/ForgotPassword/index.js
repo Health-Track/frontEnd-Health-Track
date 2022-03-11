@@ -14,7 +14,7 @@ export default function ForgotPassword() {
           <img className="health-logo" src={Logo} alt="" />
         </Link>
       </div>
-      <div className="form-container">
+      <div className="form-forgot-password-container">
         <div className="form-comum">
           <h1>Recupere sua senha</h1>
           <form>
