@@ -23,6 +23,16 @@
   align-items: center;
 }
 
+@media(max-width: 550px) {
+  .footer-container .footer-component .github-span {
+    display: none;
+  }
+
+  .footer-container .footer-component {
+    justify-content: center;
+  }
+}
+
 .anticon-heart {
   margin-left: 5px;
 }
