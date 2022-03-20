@@ -3,6 +3,7 @@ import { Drawer } from 'antd';
 import 'antd/dist/antd.css';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
+import './style.css';
 
 class HomePage extends React.Component {
   constructor() {
@@ -18,10 +19,18 @@ class HomePage extends React.Component {
     console.log(this.state.showMenu);
   }
 
+  loggout() {
+    alert('Sair');
+  }
+
   render() {
     return (
       <div className="homepage-container">
-        <DefaultHeader username="Itallo" toggleMenu={this.toggleMenu} />
+        <DefaultHeader
+          username="Itallo"
+          toggleMenu={this.toggleMenu}
+          loggout={this.loggout}
+        />
         <DefaultFooter />
         <Drawer
           title="Menu"

@@ -1,5 +1,7 @@
 import React from 'react';
 import './style.css';
+import { Button } from 'antd';
+import { ExportOutlined } from '@ant-design/icons';
 import Logo from '../../assets/logo.png';
 
 export default class DefaultHeader extends React.Component {
@@ -12,9 +14,6 @@ export default class DefaultHeader extends React.Component {
             onClick={this.props.toggleMenu}
             role="button"
             tabIndex={0}
-            onKeyDown={() => {
-              console.log('lint chato');
-            }}
           >
             <div className="hamburguer" />
             <div className="hamburguer" />
@@ -24,7 +23,14 @@ export default class DefaultHeader extends React.Component {
             <img className="logo-header" src={Logo} alt="" />
           </span>
           <span className="user-info">
-            <h2>{this.props.username}</h2>
+            <h2 className="user-name">{this.props.username}</h2>
+            <Button
+              className="botaoSair"
+              type="link"
+              shape="circle"
+              onClick={this.props.loggout}
+              icon={<ExportOutlined style={{ color: 'black' }} />}
+            />
           </span>
         </div>
       </div>
