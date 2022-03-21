@@ -1,6 +1,7 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { Link } from 'react-router-dom';
 
+import useForm from '../../hooks/useForm';
 import DefaultFooter from '../../components/DefaultFooter';
 import Logo from '../../assets/logo.png';
 
@@ -12,16 +13,14 @@ function Signin() {
     password: ''
   };
 
-  const [user, setUser] = useState(valoresIniciais);
+  // const [user, setUser] = useState(valoresIniciais);
 
   function requestLogin() {
-    console.log(user);
+    console.log(values);
     clearForm();
   }
 
-  function clearForm() {
-    setUser({ ...valoresIniciais });
-  }
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
 
   return (
     <div className="signin-container">
@@ -38,10 +37,10 @@ function Signin() {
               <input
                 type="text"
                 id="email"
-                value={user.email}
+                value={values.email}
                 placeholder="E-mail"
                 name="email"
-                onChange={e => setUser({ ...user, email: e.target.value })}
+                onChange={handleChange}
               />
             </p>
             <p>
@@ -49,9 +48,9 @@ function Signin() {
                 type="password"
                 id="password"
                 name="password"
-                value={user.password}
+                value={values.password}
                 placeholder="Senha"
-                onChange={e => setUser({ ...user, password: e.target.value })}
+                onChange={handleChange}
               />
             </p>
             <p className="submit">
