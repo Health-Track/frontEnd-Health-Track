@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import DefaultFooter from '../../components/DefaultFooter';
@@ -7,6 +7,22 @@ import Logo from '../../assets/logo.png';
 import './style.css';
 
 function Signin() {
+  const valoresIniciais = {
+    email: '',
+    password: ''
+  };
+
+  const [user, setUser] = useState(valoresIniciais);
+
+  function requestLogin() {
+    console.log(user);
+    clearForm();
+  }
+
+  function clearForm() {
+    setUser({ ...valoresIniciais });
+  }
+
   return (
     <div className="signin-container">
       <div className="signin-logo-container">
@@ -17,26 +33,36 @@ function Signin() {
       <div className="form-container">
         <div className="form-comum">
           <h1>Login</h1>
-          <form>
+          <form onSubmit={e => e.preventDefault()}>
             <p>
-              <input type="text" id="email" value="" placeholder="E-mail" />
+              <input
+                type="text"
+                id="email"
+                value={user.email}
+                placeholder="E-mail"
+                name="email"
+                onChange={e => setUser({ ...user, email: e.target.value })}
+              />
             </p>
             <p>
               <input
                 type="password"
                 id="password"
-                value=""
+                name="password"
+                value={user.password}
                 placeholder="Senha"
+                onChange={e => setUser({ ...user, password: e.target.value })}
               />
             </p>
             <p className="submit">
-              <input
+              <button
                 type="submit"
                 id="commit"
-                onClick="validatePassword(), validateEmail(), login()"
                 className="submitBtn"
-                value="Entrar"
-              />
+                onClick={requestLogin}
+              >
+                Entrar
+              </button>
             </p>
           </form>
         </div>
