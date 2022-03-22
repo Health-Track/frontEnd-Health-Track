@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Form, Input } from 'antd';
 
 import useForm from '../../hooks/useForm';
 import DefaultFooter from '../../components/DefaultFooter';
@@ -8,19 +9,17 @@ import Logo from '../../assets/logo.png';
 import './style.css';
 
 function Signin() {
-  const valoresIniciais = {
+  const initialValue = {
     email: '',
     password: ''
   };
-
-  // const [user, setUser] = useState(valoresIniciais);
 
   function requestLogin() {
     console.log(values);
     clearForm();
   }
 
-  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+  const { handleChange, values, clearForm } = useForm(initialValue);
 
   return (
     <div className="signin-container">
@@ -32,38 +31,40 @@ function Signin() {
       <div className="form-container">
         <div className="form-comum">
           <h1>Login</h1>
-          <form onSubmit={e => e.preventDefault()}>
-            <p>
-              <input
+          <Form>
+            <Form.Item>
+              <Input
                 type="text"
                 id="email"
                 value={values.email}
                 placeholder="E-mail"
                 name="email"
                 onChange={handleChange}
+                className="health-track-input"
               />
-            </p>
-            <p>
-              <input
+            </Form.Item>
+            <Form.Item>
+              <Input
                 type="password"
                 id="password"
                 name="password"
                 value={values.password}
                 placeholder="Senha"
                 onChange={handleChange}
+                className="health-track-input"
               />
-            </p>
-            <p className="submit">
-              <button
-                type="submit"
-                id="commit"
-                className="submitBtn"
-                onClick={requestLogin}
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={() => requestLogin()}
+                style={{ width: '100%' }}
               >
-                Entrar
-              </button>
-            </p>
-          </form>
+                Login
+              </Button>
+            </Form.Item>
+          </Form>
         </div>
         <div id="footer">
           <p>
