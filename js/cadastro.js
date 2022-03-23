@@ -23,7 +23,7 @@ function validatePasswordisEqual(){
 }
 
 async function create(user) {
-    let url = ' https://es-health-track.herokuapp.com/api/v1/auth'; 
+    let url = 'https://es-health-track.herokuapp.com/api/v1/auth'; 
     
     try {
         let response = await fetch(url, {
