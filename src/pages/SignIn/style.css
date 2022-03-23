@@ -53,3 +53,9 @@
   border-bottom: 1px solid #cfcfcf;
   border-radius: 3px 3px 0 0;
 }
+
+.forgot-password-button .ant-form-item-control {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}

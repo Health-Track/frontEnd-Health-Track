@@ -1,6 +1,7 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, Input } from 'antd';
+import { LoginOutlined } from '@ant-design/icons';
 
 import useForm from '../../hooks/useForm';
 import DefaultFooter from '../../components/DefaultFooter';
@@ -64,15 +65,15 @@ function Signin() {
                 Login
               </Button>
             </Form.Item>
+            <Form.Item className="forgot-password-button">
+              <Link to="/forgot-password">Esqueci minha senha</Link>
+            </Form.Item>
+            <Form.Item className="forgot-password-button">
+              <Link to="/sign-up">
+                <LoginOutlined /> Cadastrar
+              </Link>
+            </Form.Item>
           </Form>
-        </div>
-        <div id="footer">
-          <p>
-            Ainda não é cadastrado? <Link to="/sign-up">Cadastrar</Link>
-          </p>
-          <p style={{ 'font-size': '10px' }}>
-            Esqueceu a senha? <Link to="/forgot-password">Recuperar senha</Link>
-          </p>
         </div>
       </div>
       <DefaultFooter />
