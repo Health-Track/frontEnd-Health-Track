@@ -2,10 +2,9 @@ function createUser(){
     if (document.getElementById("password").value != document.getElementById("password2").value)
         alert("A confirmação não corresponde à senha digitada.");
     else create({
-        firstName: document.getElementById("nome").value,
-        lastName :document.getElementById("sobrenome").value,
         email :document.getElementById("email").value,
-        password :document.getElementById("password").value
+        nome: document.getElementById("nome").value,
+        senha :document.getElementById("password").value
     });
 }
 
