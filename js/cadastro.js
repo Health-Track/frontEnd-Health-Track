@@ -24,7 +24,7 @@ function validatePasswordisEqual(){
 }
 
 async function create(user) {
-    let url = 'https://projeto-psoft-igor-victor.herokuapp.com/api/v1/auth/';
+    let url = ''; //back endPoint
     
     try {
         let response = await fetch(url, {
