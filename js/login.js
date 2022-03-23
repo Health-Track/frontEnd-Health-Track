@@ -1,7 +1,7 @@
 function login() {
     sendLogin({
         email: document.getElementById("email").value,
-        password: document.getElementById("password").value
+        senha: document.getElementById("password").value
     });
 }
 
@@ -37,7 +37,7 @@ function validatePassword(){
 
 
 async function sendLogin(user){
-    let url = ''; //path to backend 
+    let url = 'https://es-health-track.herokuapp.com/api/v1/auth/login';
     
     try {
         let response = await fetch(url, {
