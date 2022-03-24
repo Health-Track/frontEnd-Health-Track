@@ -17,6 +17,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "no-param-reassign": "off",
     "no-use-before-define": "off",
     "prettier/prettier": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

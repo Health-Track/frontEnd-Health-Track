@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Drawer, Form, Input, Modal, Table } from 'antd';
+import { Button, Card, Drawer, Table } from 'antd';
 import 'antd/dist/antd.css';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
@@ -9,7 +9,37 @@ import HemogramaForm from './form';
 class Hemograma extends React.Component {
   constructor() {
     super();
-    this.state = { showMenu: false, showNovo: false };
+    this.state = {
+      showMenu: false,
+      showNovo: false,
+      registros: [
+        {
+          descricao:
+            'Descrição descricao descricao Descrição descricao descricao ',
+          data: '2022-03-21T10:15:30',
+          hemoglobina: 1.5,
+          hemacrotito: 2.5,
+          hematimetria: 3.5,
+          reticulocitos: 4.5,
+          volumeCorpuscular: 5.5,
+          hemoglobinaCorpuscular: 6.5,
+          concentracaoHemoglobina: 7.5,
+          indiceAnisocitose: 8.5
+        },
+        {
+          descricao: 'Descrição',
+          data: '2022-03-21T10:15:30',
+          hemoglobina: 1.5,
+          hemacrotito: 2.5,
+          hematimetria: 3.5,
+          reticulocitos: 4.5,
+          volumeCorpuscular: 5.5,
+          hemoglobinaCorpuscular: 6.5,
+          concentracaoHemoglobina: 7.5,
+          indiceAnisocitose: 8.5
+        }
+      ]
+    };
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleNovo = this.toggleNovo.bind(this);
   }
@@ -30,37 +60,14 @@ class Hemograma extends React.Component {
     alert('Sair');
   }
 
-  render() {
-    const dataSource = [
-      {
-        key: '1',
-        descricao:
-          'Descrição asdasdadasdadasasdasdasdasd asdasdkabdasjsd adjbaldjsa dajbdlajda lajdbljab d',
-        data: '2022-03-21T10:15:30',
-        hemoglobina: 1.5,
-        hemacrotito: 2.5,
-        hematimetria: 3.5,
-        reticulocitos: 4.5,
-        volumeCorpuscular: 5.5,
-        hemoglobinaCorpuscular: 6.5,
-        concentracaoHemoglobina: 7.5,
-        indiceAnisocitose: 8.5
-      },
-      {
-        key: '1',
-        descricao: 'Descrição',
-        data: '2022-03-21T10:15:30',
-        hemoglobina: 1.5,
-        hemacrotito: 2.5,
-        hematimetria: 3.5,
-        reticulocitos: 4.5,
-        volumeCorpuscular: 5.5,
-        hemoglobinaCorpuscular: 6.5,
-        concentracaoHemoglobina: 7.5,
-        indiceAnisocitose: 8.5
-      }
-    ];
+  keyedList() {
+    return this.state.registros.map((item, idx) => {
+      item.key = idx;
+      return item;
+    });
+  }
 
+  render() {
     const columns = [
       {
         title: 'Data',
@@ -128,7 +135,7 @@ class Hemograma extends React.Component {
     return (
       <div className="Hemograma-container">
         <DefaultHeader
-          username="Itallo"
+          username="Username"
           toggleMenu={this.toggleMenu}
           loggout={this.loggout}
         />
@@ -142,7 +149,7 @@ class Hemograma extends React.Component {
             }
           >
             <Table
-              dataSource={dataSource}
+              dataSource={this.keyedList()}
               columns={columns}
               scroll={{ x: 1500, y: 350 }}
               pagination={false}
@@ -150,14 +157,12 @@ class Hemograma extends React.Component {
           </Card>
         </div>
         <DefaultFooter />
-        <Drawer
-          title="Criar novo Registro"
-          visible={this.state.showNovo}
-          onClose={this.toggleNovo}
-          placement="right"
-        >
-          <HemogramaForm />
-        </Drawer>
+
+        <HemogramaForm
+          registros={this.state.registros}
+          showNovo={this.state.showNovo}
+          toogleNovo={this.toggleNovo}
+        />
 
         <Drawer
           title="Menu"
