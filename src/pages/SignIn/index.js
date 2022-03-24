@@ -1,12 +1,27 @@
-import React from 'react';
+import { React } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Form, Input } from 'antd';
+import { LoginOutlined } from '@ant-design/icons';
 
+import useForm from '../../hooks/useForm';
 import DefaultFooter from '../../components/DefaultFooter';
 import Logo from '../../assets/logo.png';
 
 import './style.css';
 
 function Signin() {
+  const initialValue = {
+    email: '',
+    password: ''
+  };
+
+  function requestLogin() {
+    console.log(values);
+    clearForm();
+  }
+
+  const { handleChange, values, clearForm } = useForm(initialValue);
+
   return (
     <div className="signin-container">
       <div className="signin-logo-container">
@@ -17,36 +32,48 @@ function Signin() {
       <div className="form-container">
         <div className="form-comum">
           <h1>Login</h1>
-          <form>
-            <p>
-              <input type="text" id="email" value="" placeholder="E-mail" />
-            </p>
-            <p>
-              <input
+          <Form>
+            <Form.Item>
+              <Input
+                type="text"
+                id="email"
+                value={values.email}
+                placeholder="E-mail"
+                name="email"
+                onChange={handleChange}
+                className="health-track-input"
+              />
+            </Form.Item>
+            <Form.Item>
+              <Input
                 type="password"
                 id="password"
-                value=""
+                name="password"
+                value={values.password}
                 placeholder="Senha"
+                onChange={handleChange}
+                className="health-track-input"
               />
-            </p>
-            <p className="submit">
-              <input
-                type="submit"
-                id="commit"
-                onClick="validatePassword(), validateEmail(), login()"
-                className="submitBtn"
-                value="Entrar"
-              />
-            </p>
-          </form>
-        </div>
-        <div id="footer">
-          <p>
-            Ainda não é cadastrado? <Link to="/sign-up">Cadastrar</Link>
-          </p>
-          <p style={{ 'font-size': '10px' }}>
-            Esqueceu a senha? <Link to="/forgot-password">Recuperar senha</Link>
-          </p>
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={() => requestLogin()}
+                style={{ width: '100%' }}
+              >
+                Login
+              </Button>
+            </Form.Item>
+            <Form.Item className="forgot-password-button">
+              <Link to="/forgot-password">Esqueci minha senha</Link>
+            </Form.Item>
+            <Form.Item className="forgot-password-button">
+              <Link to="/sign-up">
+                <LoginOutlined /> Cadastrar
+              </Link>
+            </Form.Item>
+          </Form>
         </div>
       </div>
       <DefaultFooter />
