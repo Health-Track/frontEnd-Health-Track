@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, Card, Drawer, Table } from 'antd';
+import { Button, Card, Table } from 'antd';
 import 'antd/dist/antd.css';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
-import './style.css';
+import DefaultMenu from '../../components/DefaultMenu';
 import HemogramaForm from './form';
+import './style.css';
 
 class Hemograma extends React.Component {
   constructor() {
@@ -44,15 +45,15 @@ class Hemograma extends React.Component {
     this.toggleNovo = this.toggleNovo.bind(this);
   }
 
-  toggleMenu() {
-    this.setState(prevState => ({
-      showMenu: !prevState.showMenu
-    }));
-  }
-
   toggleNovo() {
     this.setState(prevState => ({
       showNovo: !prevState.showNovo
+    }));
+  }
+
+  toggleMenu() {
+    this.setState(prevState => ({
+      showMenu: !prevState.showMenu
     }));
   }
 
@@ -164,16 +165,10 @@ class Hemograma extends React.Component {
           toogleNovo={this.toggleNovo}
         />
 
-        <Drawer
-          title="Menu"
-          placement="left"
-          onClose={this.toggleMenu}
-          visible={this.state.showMenu}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Drawer>
+        <DefaultMenu
+          showMenu={this.state.showMenu}
+          toggleMenu={this.toggleMenu}
+        />
       </div>
     );
   }
