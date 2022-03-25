@@ -6,6 +6,7 @@ import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import HomePage from '../pages/HomePage';
 import Hemograma from '../pages/Hemograma';
+import Colesterol from '../pages/Colesterol';
 
 function HealthTrackRoutes() {
   return (
@@ -15,6 +16,7 @@ function HealthTrackRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/home-page" element={<HomePage />} />
       <Route path="/hemograma" element={<Hemograma />} />
+      <Route path="/colesterol" element={<Colesterol />} />
     </Routes>
   );
 }

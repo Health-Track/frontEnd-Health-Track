@@ -1,5 +1,6 @@
 import {
   BgColorsOutlined,
+  HighlightOutlined,
   HomeOutlined,
   LeftOutlined
 } from '@ant-design/icons';
@@ -31,16 +32,31 @@ export default class DefaultMenu extends React.Component {
           <Link className="link-menu" to="/hemograma">
             Hemograma
           </Link>
-          <Divider />
+          <br />
+          <br />
+          <Link className="link-menu" to="/colesterol">
+            Colesterol
+          </Link>
+          <br />
+          <br />
+          Pressão
+          <br />
+          <br />
+          Glicemia
+          <br />
+          <br />
+          Urina
+          <br />
+          <br />
           Fezes
           <Divider />
-          Urina
-          <Divider />
-          Colesterol
-          <Divider />
-          Pressão
-          <Divider />
-          Glicemia
+          <div className="exames-menu">
+            <HighlightOutlined /> <b className="exame-menu">OPÇÕES</b>
+          </div>
+          <br />
+          <Link className="link-menu" to="/forgot-password">
+            Recuperar senha
+          </Link>
         </Drawer>
       </div>
     );
