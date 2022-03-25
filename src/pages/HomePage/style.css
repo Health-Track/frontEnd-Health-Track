@@ -8,3 +8,11 @@
   background-color: white;
   font-size: 14px;
 }
+
+.contentStyle {
+  height: 160px;
+  color: #fff;
+  height: '600px';
+  align-items: 'center';
+  background: #0cd2a7;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Drawer } from 'antd';
 import 'antd/dist/antd.css';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
 import './style.css';
+import DefaultMenu from '../../components/DefaultMenu';
 
 class HomePage extends React.Component {
   constructor() {
@@ -32,16 +32,11 @@ class HomePage extends React.Component {
           loggout={this.loggout}
         />
         <DefaultFooter />
-        <Drawer
-          title="Menu"
-          placement="left"
-          onClose={this.toggleMenu}
-          visible={this.state.showMenu}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Drawer>
+
+        <DefaultMenu
+          showMenu={this.state.showMenu}
+          toggleMenu={this.toggleMenu}
+        />
       </div>
     );
   }
