@@ -27,7 +27,7 @@ class HomePage extends React.Component {
     return (
       <div className="homepage-container">
         <DefaultHeader
-          username="Itallo"
+          username="Username"
           toggleMenu={this.toggleMenu}
           loggout={this.loggout}
         />
