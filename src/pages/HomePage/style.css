@@ -16,3 +16,8 @@
   align-items: 'center';
   background: #0cd2a7;
 }
+
+.imagem-index {
+  width: 100%;
+  height: 600px;
+}

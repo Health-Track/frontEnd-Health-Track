@@ -4,6 +4,7 @@ import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
 import './style.css';
 import DefaultMenu from '../../components/DefaultMenu';
+import Landing from '../../assets/landing.png';
 
 class HomePage extends React.Component {
   constructor() {
@@ -32,7 +33,9 @@ class HomePage extends React.Component {
           loggout={this.loggout}
         />
         <DefaultFooter />
-
+        <div>
+          <img className="imagem-index" src={Landing} alt="" />
+        </div>
         <DefaultMenu
           showMenu={this.state.showMenu}
           toggleMenu={this.toggleMenu}

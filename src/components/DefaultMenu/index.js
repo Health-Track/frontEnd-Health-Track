@@ -29,26 +29,31 @@ export default class DefaultMenu extends React.Component {
             <BgColorsOutlined /> <b className="exame-menu">EXAMES</b>
           </div>
           <br />
-          <Link className="link-menu" to="/hemograma">
-            Hemograma
-          </Link>
+          <div>
+            <Link className="link-menu" to="/hemograma">
+              Hemograma
+            </Link>
+          </div>
+
           <br />
+          <div>
+            <Link className="link-menu" to="/colesterol">
+              Colesterol
+            </Link>
+          </div>
+
           <br />
-          <Link className="link-menu" to="/colesterol">
-            Colesterol
-          </Link>
+
+          <div className="link-menu">Pressão </div>
           <br />
+
+          <div className="link-menu">Glicemia</div>
           <br />
-          Pressão
+
+          <div className="link-menu">Urina </div>
+
           <br />
-          <br />
-          Glicemia
-          <br />
-          <br />
-          Urina
-          <br />
-          <br />
-          Fezes
+          <div className="link-menu">Fezes</div>
           <Divider />
           <div className="exames-menu">
             <HighlightOutlined /> <b className="exame-menu">OPÇÕES</b>
