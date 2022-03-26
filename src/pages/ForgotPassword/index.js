@@ -1,19 +1,34 @@
-import { React, useState } from 'react';
+import { React, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
+import { MailOutlined, WarningFilled } from '@ant-design/icons';
 
 import Logo from '../../assets/logo.png';
 import Landing from '../../assets/landing.png';
+import isValidEmail from '../../utils/emailValidator';
 
 import './style.css';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
 
-  function sendEmail() {
-    console.log(`Sending redefining password to ${email}`);
-    setEmail('');
-  }
+  const sendEmail = useCallback(async () => {
+    if (isValidEmail(email)) {
+      notification.info({
+        message: 'E-mail enviado',
+        description:
+          'Um e-mail para redefinição de senha foi enviado para o e-mail fornecido. Cheque sua caixa de entrada',
+        icon: <MailOutlined style={{ color: '#147CD9' }} />
+      });
+      setEmail('');
+    } else {
+      notification.warning({
+        message: 'Atenção!',
+        description: 'Informe um e-mail válido.',
+        icon: <WarningFilled style={{ color: '#e70f0f' }} />
+      });
+    }
+  });
 
   return (
     <div className="forgot-password-container">
@@ -49,7 +64,6 @@ export default function ForgotPassword() {
                   placeholder="E-mail"
                   name="email"
                   onChange={e => setEmail(e.target.value)}
-                  // style={{ width: '100%', margin: 0 }}
                   className="health-track-input"
                 />
               </Form.Item>
@@ -57,7 +71,7 @@ export default function ForgotPassword() {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  onClick={() => sendEmail()}
+                  onClick={() => sendEmail(email)}
                   style={{ width: '100%' }}
                 >
                   Recuperar Senha
