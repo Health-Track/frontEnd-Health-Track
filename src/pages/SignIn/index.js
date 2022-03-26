@@ -1,11 +1,13 @@
-import { React } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Form, Input } from 'antd';
-import { LoginOutlined } from '@ant-design/icons';
+import { React, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Form, Input, notification } from 'antd';
+import { LoginOutlined, WarningFilled } from '@ant-design/icons';
 
 import useForm from '../../hooks/useForm';
 import DefaultFooter from '../../components/DefaultFooter';
 import Logo from '../../assets/logo.png';
+import api from '../../services/apiClient';
+import isValidEmail from '../../utils/emailValidator';
 
 import './style.css';
 
@@ -15,10 +17,41 @@ function Signin() {
     password: ''
   };
 
-  function requestLogin() {
-    console.log(values);
-    clearForm();
-  }
+  const navigate = useNavigate();
+
+  const requestLogin = useCallback(async ({ email, password }) => {
+    if (isValidEmail(email)) {
+      api
+        .post('/auth/login', {
+          email,
+          senha: password
+        })
+        .then(() => {
+          navigate('/home');
+        })
+        .catch(() => {
+          notifyWarningToClient({
+            message: 'Erro desconhecido',
+            description:
+              'Houve um problema desconhecido na sua requisição. Tente novamente'
+          });
+        });
+      clearForm();
+    } else {
+      notifyWarningToClient({
+        message: 'Atenção!',
+        description: 'Informe um e-mail válido.'
+      });
+    }
+
+    function notifyWarningToClient(warning) {
+      notification.warning({
+        message: warning.message,
+        description: warning.description,
+        icon: <WarningFilled style={{ color: '#e70f0f' }} />
+      });
+    }
+  });
 
   const { handleChange, values, clearForm } = useForm(initialValue);
 
@@ -59,7 +92,7 @@ function Signin() {
               <Button
                 type="primary"
                 htmlType="submit"
-                onClick={() => requestLogin()}
+                onClick={() => requestLogin({ ...values })}
                 style={{ width: '100%' }}
               >
                 Login

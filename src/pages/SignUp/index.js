@@ -1,8 +1,11 @@
-import { Button, Form, Input } from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Button, Form, Input, notification } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { CheckCircleOutlined, WarningFilled } from '@ant-design/icons';
 
 import useForm from '../../hooks/useForm';
+import isValidEmail from '../../utils/emailValidator';
+import api from '../../services/apiClient';
 import Landing from '../../assets/landing.png';
 import Logo from '../../assets/logo.png';
 
@@ -11,7 +14,6 @@ import './style.css';
 function SignUp() {
   const initialValue = {
     name: '',
-    lastname: '',
     email: '',
     password: '',
     passwordCheck: ''
@@ -19,10 +21,62 @@ function SignUp() {
 
   const { handleChange, values, clearForm } = useForm(initialValue);
 
-  function sendRegisterRequest() {
-    console.log(values);
-    clearForm();
-  }
+  const navigate = useNavigate();
+
+  const signUpRequest = useCallback(
+    async ({ name, email, password, passwordCheck }) => {
+      if (passwordMatchWithCheck()) {
+        notifyWarningToClient({
+          message: 'Confirmação de senha',
+          description: 'As senhas informadas não coincidem. Tente novamente.'
+        });
+      } else if (!isValidEmail(email)) {
+        notifyWarningToClient({
+          message: 'Atenção',
+          description: 'Informe um e-mail válido!'
+        });
+      } else {
+        requestRegister();
+      }
+
+      function requestRegister() {
+        api
+          .post('/auth', {
+            nome: name,
+            email,
+            senha: password
+          })
+          .then(() => {
+            notification.success({
+              message: 'Cadastro Efetuado',
+              description: 'Seu cadastro foi concluído!',
+              icon: <CheckCircleOutlined style={{ color: '#28730a' }} />,
+              onClose: navigate('/')
+            });
+            clearForm();
+          })
+          .catch(() => {
+            notifyWarningToClient({
+              message: 'Erro desconhecido',
+              description:
+                'Houve um problema desconhecido na sua requisição. Tente novamente'
+            });
+          });
+      }
+
+      function passwordMatchWithCheck() {
+        return password !== passwordCheck;
+      }
+
+      function notifyWarningToClient(warning) {
+        notification.warning({
+          message: warning.message,
+          description: warning.description,
+          icon: <WarningFilled style={{ color: '#e70f0f' }} />
+        });
+      }
+    }
+  );
 
   return (
     <div className="signup-container">
@@ -50,17 +104,6 @@ function SignUp() {
                   value={values.name}
                   placeholder="Nome"
                   name="name"
-                  onChange={handleChange}
-                  className="health-track-input"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  type="text"
-                  id="lastname"
-                  value={values.lastname}
-                  placeholder="Sobrenome"
-                  name="lastname"
                   onChange={handleChange}
                   className="health-track-input"
                 />
@@ -102,7 +145,7 @@ function SignUp() {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  onClick={() => sendRegisterRequest()}
+                  onClick={() => signUpRequest({ ...values })}
                   style={{ width: '100%' }}
                 >
                   Cadastrar
