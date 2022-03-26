@@ -1,0 +1,18 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  font-size: 14px;
+}
+
+.contentStyle {
+  height: 160px;
+  color: #fff;
+  height: '600px';
+  align-items: 'center';
+  background: #0cd2a7;
+}
