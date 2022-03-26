@@ -27,7 +27,7 @@ function Signin() {
           senha: password
         })
         .then(() => {
-          navigate('/home');
+          navigate('/home-page');
         })
         .catch(() => {
           notifyWarningToClient({

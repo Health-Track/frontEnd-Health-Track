@@ -25,6 +25,7 @@ function SignUp() {
 
   const signUpRequest = useCallback(
     async ({ name, email, password, passwordCheck }) => {
+      const passwordMinLength = 8;
       if (passwordMatchWithCheck()) {
         notifyWarningToClient({
           message: 'Confirmação de senha',
@@ -34,6 +35,11 @@ function SignUp() {
         notifyWarningToClient({
           message: 'Atenção',
           description: 'Informe um e-mail válido!'
+        });
+      } else if (password.length < passwordMinLength) {
+        notifyWarningToClient({
+          message: 'Senha inválida',
+          description: 'A senha deve conter ao menos 8 dígitos.'
         });
       } else {
         requestRegister();
