@@ -4,20 +4,17 @@ import { Button, Drawer, Form, Input } from 'antd';
 import 'antd/dist/antd.css';
 import './style.css';
 
-class HemogramaForm extends React.Component {
+class ColesterolForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       descricao: '',
       data: '',
-      hemoglobina: '',
-      hemacrotito: '',
-      hematimetria: '',
-      reticulocitos: '',
-      volumeCorpuscular: '',
-      hemoglobinaCorpuscular: '',
-      concentracaoHemoglobina: '',
-      indiceAnisocitose: ''
+      colesterolTotal: '',
+      colesterolHDL: '',
+      colesterolNaoHDL: '',
+      colesterolLDL: '',
+      relacaoTotalHDL: ''
     };
   }
 
@@ -37,21 +34,18 @@ class HemogramaForm extends React.Component {
     this.setState({
       descricao: '',
       data: '',
-      hemoglobina: '',
-      hemacrotito: '',
-      hematimetria: '',
-      reticulocitos: '',
-      volumeCorpuscular: '',
-      hemoglobinaCorpuscular: '',
-      concentracaoHemoglobina: '',
-      indiceAnisocitose: ''
+      colesterolTotal: '',
+      colesterolHDL: '',
+      colesterolNaoHDL: '',
+      colesterolLDL: '',
+      relacaoTotalHDL: ''
     });
   }
 
   render() {
     return (
       <Drawer
-        title="Exame de Hemograma"
+        title="Exame de Colesterol"
         visible={this.props.showNovo}
         onClose={this.props.toogleNovo}
         placement="right"
@@ -73,7 +67,7 @@ class HemogramaForm extends React.Component {
           <Form.Item
             label="Descricao"
             rules={[
-              { required: true, message: 'Dê uma descrição para o hemograma!' }
+              { required: true, message: 'Dê uma descrição para o Colesterol!' }
             ]}
           >
             <Input
@@ -85,82 +79,52 @@ class HemogramaForm extends React.Component {
               className="health-track-input"
             />
           </Form.Item>
-          <Form.Item label="Hemoglobina">
+          <Form.Item label="Colesterol Total">
             <Input
               type="input"
-              id="hemoglobina"
-              value={this.state.hemoglobina}
-              name="hemoglobina"
+              id="colesterolTotal"
+              value={this.state.colesterolTotal}
+              name="colesterolTotal"
               onChange={e => this.handleChange(e)}
               className="health-track-input"
             />
           </Form.Item>
-          <Form.Item label="Hemacrotito">
+          <Form.Item label="Colesterol HDL">
             <Input
               type="input"
-              id="hemacrotito"
-              value={this.state.hemacrotito}
-              name="hemacrotito"
+              id="colesterolHDL"
+              value={this.state.colesterolHDL}
+              name="colesterolHDL"
               onChange={e => this.handleChange(e)}
               className="health-track-input"
             />
           </Form.Item>
-          <Form.Item label="Hematimetria">
+          <Form.Item label="Colesterol Nao HDL">
             <Input
               type="input"
-              id="hematimetria"
-              value={this.state.hematimetria}
-              name="hematimetria"
+              id="colesterolNaoHDL"
+              value={this.state.colesterolNaoHDL}
+              name="colesterolNaoHDL"
               onChange={e => this.handleChange(e)}
               className="health-track-input"
             />
           </Form.Item>
-          <Form.Item label="Reticulocitos">
+          <Form.Item label="Colesterol LDL">
             <Input
               type="input"
-              id="reticulocitos"
-              value={this.state.reticulocitos}
-              name="reticulocitos"
+              id="colesterolLDL"
+              value={this.state.colesterolLDL}
+              name="colesterolLDL"
               onChange={e => this.handleChange(e)}
               className="health-track-input"
             />
           </Form.Item>
-          <Form.Item label="Volume Corpuscular">
+          <Form.Item label="Relacao Total HDL">
             <Input
               type="input"
-              id="volumeCorpuscular"
-              value={this.state.volumeCorpuscular}
-              name="volumeCorpuscular"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Hemoglobina Corpuscular">
-            <Input
-              type="input"
-              id="hemoglobinaCorpuscular"
-              value={this.state.hemoglobinaCorpuscular}
-              name="hemoglobinaCorpuscular"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Concentracao Hemoglobina">
-            <Input
-              type="input"
-              id="concentracaoHemoglobina"
-              value={this.state.concentracaoHemoglobina}
-              name="concentracaoHemoglobina"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Indice Anisocitose">
-            <Input
-              type="input"
-              id="indiceAnisocitose"
-              value={this.state.indiceAnisocitose}
-              name="indiceAnisocitose"
+              id="relacaoTotalHDL"
+              value={this.state.relacaoTotalHDL}
+              name="relacaoTotalHDL"
               onChange={e => this.handleChange(e)}
               className="health-track-input"
             />
@@ -181,4 +145,4 @@ class HemogramaForm extends React.Component {
   }
 }
 
-export default HemogramaForm;
+export default ColesterolForm;
