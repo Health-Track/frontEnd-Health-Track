@@ -26,7 +26,9 @@ function Signin() {
           email,
           senha: password
         })
-        .then(() => {
+        .then(resp => {
+          console.log(resp.data.token)
+          localStorage.setItem('@Health-track:token', resp.data.token)
           navigate('/home-page');
         })
         .catch(() => {
