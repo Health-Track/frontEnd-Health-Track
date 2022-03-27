@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 import { Column } from '@ant-design/plots';
 import { Col, Row } from 'antd';
 
@@ -11,21 +10,19 @@ import formatDate from '../../utils/dateFormatter';
 import './style.css';
 import convertToPlainText from '../../utils/camelCaseConverter';
 
-class HomePage extends React.Component {
+export default function HomePage() {
+  const [showMenu, setShowMenu] = useState(false)
   constructor() {
     super();
     this.state = { showMenu: false };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
 
-  toggleMenu() {
-    this.setState(prevState => ({
-      showMenu: !prevState.showMenu
-    }));
-    console.log(this.state.showMenu);
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
   }
 
-  loggout() {
+  const loggout = () => {
     alert('Sair');
   }
 
@@ -105,8 +102,8 @@ class HomePage extends React.Component {
       <div className="homepage-container">
         <DefaultHeader
           username="Username"
-          toggleMenu={this.toggleMenu}
-          loggout={this.loggout}
+          toggleMenu={toggleMenu}
+          loggout={loggout}
         />
         <div className="chart-container">
           <Row id="first-row-chart">
@@ -158,13 +155,11 @@ class HomePage extends React.Component {
           </Row>
         </div>
         <DefaultMenu
-          showMenu={this.state.showMenu}
-          toggleMenu={this.toggleMenu}
+          showMenu={showMenu}
+          toggleMenu={toggleMenu}
         />
         <DefaultFooter />
       </div>
     );
   }
 }
-
-export default HomePage;
