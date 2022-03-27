@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'antd';
 
 import DefaultHeader from '../../components/DeafultHeader';
@@ -14,40 +13,35 @@ import './style.css';
 
 export default function HomePage() {
   const [showMenu, setShowMenu] = useState(false);
-  const [loadExam, setLoadExam] = useState('colesterol')
-  const [result, setResult] = useState([])
-  const navigate = useNavigate();
+  const [loadExam, setLoadExam] = useState('colesterol');
+  const [result, setResult] = useState([]);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
-  }
-
-  const loggout = () => {
-    localStorage.clear()
-    navigate('/')
-  }
+  };
 
   let auxCounter = 0;
 
-  const colors = ['#147CD9', '#08860C', '#C83608', '#930620']
+  const colors = ['#147CD9', '#08860C', '#C83608', '#930620'];
   const exams = [
-    {urlLabel: 'colesterol', label: 'Colesterol'},
-    {urlLabel: 'hemograma', label: 'Hemograma'},
-    {urlLabel: 'glicemia', label: 'Glicemia'},
-    {urlLabel: 'urina', label: 'Urina'},
-    {urlLabel: 'fezes', label: 'Fezes'}
+    { urlLabel: 'colesterol', label: 'Colesterol' },
+    { urlLabel: 'hemograma', label: 'Hemograma' },
+    { urlLabel: 'glicemia', label: 'Glicemia' },
+    { urlLabel: 'urina', label: 'Urina' },
+    { urlLabel: 'fezes', label: 'Fezes' }
   ];
 
   const requestExamInformation = useCallback(async () => {
-    return api.get(`/exame/${loadExam.toLowerCase()}/listar`)
-      .then(resp => {
-        setResult([...resp.data].map(exam => {
-          const obj = {... exam};
+    return api.get(`/exame/${loadExam.toLowerCase()}/listar`).then(resp => {
+      setResult(
+        [...resp.data].map(exam => {
+          const obj = { ...exam };
           obj.data = formatDate(new Date(exam.data));
 
           return obj;
-        }))
-      })
+        })
+      );
+    });
   });
 
   const config = {
@@ -57,50 +51,47 @@ export default function HomePage() {
       position: 'middle',
       style: {
         fill: '#FFFFFF',
-        opacity: 0.6,
-      },
+        opacity: 0.6
+      }
     },
     xAxis: {
       label: {
         autoHide: true,
-        autoRotate: false,
-      },
+        autoRotate: false
+      }
     }
   };
 
   useEffect(() => {
-    requestExamInformation()
-  }, [result])
+    requestExamInformation();
+  }, [result]);
 
   return (
     <div className="homepage-container">
-      <DefaultHeader
-        username="Username"
-        toggleMenu={toggleMenu}
-        loggout={loggout}
-      />
+      <DefaultHeader username="Username" toggleMenu={toggleMenu} />
       <div className="home-buttons-container">
         {exams.map(exam => {
           return (
             <Button
               name={exam.urlLabel}
-              className='exam-button'
+              className="exam-button"
               onClick={() => {
                 setLoadExam(exam.urlLabel);
-                requestExamInformation()
+                requestExamInformation();
               }}
             >
               {exam.label}
             </Button>
-          )
+          );
         })}
       </div>
       <div className="chart-container">
         <Row id="first-row-chart">
-            {result.length > 0 && Object.keys(result[0]).map(key => {
+          {result.length > 0 &&
+            Object.keys(result[0]).map(key => {
               const excludedParams = ['descricao', 'data', 'id'];
-              if(excludedParams.includes(key) || auxCounter > 3) {
-                return null
+              if (excludedParams.includes(key) || auxCounter > 3) {
+                return null;
               }
               config.yField = key;
               config.color = colors[auxCounter];
@@ -108,17 +99,13 @@ export default function HomePage() {
               return (
                 <Col span={11}>
                   <h1>{convertToPlainText(key)}</h1>
-                  <ColumnChart { ...config } />
+                  <ColumnChart {...config} />
                 </Col>
-              )
+              );
             })}
         </Row>
       </div>
-      <DefaultMenu
-        showMenu={showMenu}
-        toggleMenu={toggleMenu}
-      />
+      <DefaultMenu showMenu={showMenu} toggleMenu={toggleMenu} />
     </div>
   );
 }
-

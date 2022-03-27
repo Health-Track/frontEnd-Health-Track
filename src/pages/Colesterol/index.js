@@ -51,10 +51,6 @@ class Colesterol extends React.Component {
     }));
   }
 
-  loggout() {
-    alert('Sair');
-  }
-
   keyedList() {
     return this.state.registros.map((item, idx) => {
       item.key = idx;
@@ -111,11 +107,7 @@ class Colesterol extends React.Component {
     ];
     return (
       <div className="Colesterol-container">
-        <DefaultHeader
-          username="Username"
-          toggleMenu={this.toggleMenu}
-          loggout={this.loggout}
-        />
+        <DefaultHeader username="Username" toggleMenu={this.toggleMenu} />
         <div>
           <Card
             title="Colesterol"

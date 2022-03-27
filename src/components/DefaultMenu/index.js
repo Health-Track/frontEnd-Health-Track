@@ -53,7 +53,11 @@ export default class DefaultMenu extends React.Component {
           <div className="link-menu">Urina </div>
 
           <br />
-          <div className="link-menu">Fezes</div>
+          <div>
+            <Link className="link-menu" to="/fezes">
+              Fezes
+            </Link>
+          </div>
           <Divider />
           <div className="exames-menu">
             <HighlightOutlined /> <b className="exame-menu">OPÇÕES</b>
