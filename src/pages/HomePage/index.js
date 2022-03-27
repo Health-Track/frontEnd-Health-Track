@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'antd';
 
 import DefaultHeader from '../../components/DeafultHeader';
@@ -15,13 +16,15 @@ export default function HomePage() {
   const [showMenu, setShowMenu] = useState(false);
   const [loadExam, setLoadExam] = useState('colesterol')
   const [result, setResult] = useState([])
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   }
 
   const loggout = () => {
-    alert('Sair');
+    localStorage.clear()
+    navigate('/')
   }
 
   let auxCounter = 0;
@@ -31,7 +34,6 @@ export default function HomePage() {
     {urlLabel: 'colesterol', label: 'Colesterol'},
     {urlLabel: 'hemograma', label: 'Hemograma'},
     {urlLabel: 'glicemia', label: 'Glicemia'},
-    {urlLabel: 'pressao', label: 'Pressão'},
     {urlLabel: 'urina', label: 'Urina'},
     {urlLabel: 'fezes', label: 'Fezes'}
   ];
