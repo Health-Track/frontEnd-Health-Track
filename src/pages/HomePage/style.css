@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .contentStyle {
@@ -19,7 +20,7 @@
 }
 
 .chart-container {
-  margin: 20px 20px;
+  margin: 20px 10px 10px 20px;
   padding: 10px;
   width: 90vw;
   height: 80vh;
@@ -28,12 +29,8 @@
 }
 
 .chart-container #first-row-chart {
-  height: 300px;
-  margin-bottom: 50px;
-}
-
-.chart-container #second-row-chart {
-  height: 300px;
+  height: 230px;
+  margin-bottom: 40px;
 }
 
 .chart-container .ant-row .ant-col {
@@ -44,6 +41,7 @@
   padding: 10px 20px 50px 20px;
   background-color: white;
   border-radius: 5px;
+  margin: 10px 10px;
 }
 
 .chart-container .ant-row .ant-col-11 h1 {
@@ -55,4 +53,16 @@
   border-bottom: 1px solid #cfcfcf;
   border-radius: 3px 3px 0 0;
   font-weight: bold;
+}
+
+.home-buttons-container {
+  align-self: center;
+}
+
+.exam-button {
+  margin: 0px 5px;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: bold;
+  
 }
