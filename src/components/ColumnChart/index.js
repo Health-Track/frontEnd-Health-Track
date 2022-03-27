@@ -9,7 +9,6 @@ export default function ColumnChart(props) {
       yField={props.yField}
       label={props.label}
       xAxis={props.xAxis}
-      meta={props.meta}
       color={props.color}
     />
   );

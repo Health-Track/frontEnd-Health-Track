@@ -1,17 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
-import { Col, Row } from 'antd';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Button, Col, Row } from 'antd';
 
 import DefaultHeader from '../../components/DeafultHeader';
 import DefaultMenu from '../../components/DefaultMenu';
 import formatDate from '../../utils/dateFormatter';
 import convertToPlainText from '../../utils/camelCaseConverter';
 import ColumnChart from '../../components/ColumnChart';
+import api from '../../services/apiClient';
 
 import './style.css';
 
 export default function HomePage() {
   const [showMenu, setShowMenu] = useState(false);
+  const [loadExam, setLoadExam] = useState('colesterol')
+  const [result, setResult] = useState([])
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -23,53 +26,31 @@ export default function HomePage() {
 
   let auxCounter = 0;
 
-  const colestrerolResults = [
-    {
-      colesterolTotal: 9,
-      colesterolHDL: 20,
-      colesterolNaoHDL: 30,
-      colesterolLDL: 40,
-      relacaoTotalHDL: 21.3,
-      data: formatDate(new Date('2021-11-21T10:15:30'))
-    },
-    {
-      colesterolTotal: 13,
-      colesterolHDL: 23,
-      colesterolNaoHDL: 31,
-      colesterolLDL: 42,
-      relacaoTotalHDL: 21.9,
-      data: formatDate(new Date('2021-12-21T10:15:30'))
-    },
-    {
-      colesterolTotal: 9,
-      colesterolHDL: 15,
-      colesterolNaoHDL: 30,
-      colesterolLDL: 33,
-      relacaoTotalHDL: 21.3,
-      data: formatDate(new Date('2022-01-21T10:15:30'))
-    },
-    {
-      colesterolTotal: 15,
-      colesterolHDL: 30,
-      colesterolNaoHDL: 26,
-      colesterolLDL: 31,
-      relacaoTotalHDL: 22.3,
-      data: formatDate(new Date('2022-02-21T10:15:30'))
-    },
-    {
-      colesterolTotal: 10,
-      colesterolHDL: 20,
-      colesterolNaoHDL: 30,
-      colesterolLDL: 40,
-      relacaoTotalHDL: 21.3,
-      data: formatDate(new Date('2022-03-21T10:15:30'))
-    }
-  ]
+  const colors = ['#147CD9', '#08860C', '#C83608', '#930620']
+  const exams = [
+    {urlLabel: 'colesterol', label: 'Colesterol'},
+    {urlLabel: 'hemograma', label: 'Hemograma'},
+    {urlLabel: 'glicemia', label: 'Glicemia'},
+    {urlLabel: 'pressao', label: 'Pressão'},
+    {urlLabel: 'urina', label: 'Urina'},
+    {urlLabel: 'fezes', label: 'Fezes'}
+  ];
+
+  const requestExamInformation = useCallback(async () => {
+    return api.get(`/exame/${loadExam.toLowerCase()}/listar`)
+      .then(resp => {
+        setResult([...resp.data].map(exam => {
+          const obj = {... exam};
+          obj.data = formatDate(new Date(exam.data));
+
+          return obj;
+        }))
+      })
+  });
 
   const config = {
-    data: colestrerolResults,
+    data: result,
     xField: 'data',
-    yField: 'colesterolTotal',
     label: {
       position: 'middle',
       style: {
@@ -82,17 +63,12 @@ export default function HomePage() {
         autoHide: true,
         autoRotate: false,
       },
-    },
-    meta: {
-      type: {
-        alias: 'teste1',
-      },
-      sales: {
-        alias: 'teste2',
-      },
-    },
-    color: '#000000'
+    }
   };
+
+  useEffect(() => {
+    requestExamInformation()
+  }, [result])
 
   return (
     <div className="homepage-container">
@@ -101,13 +77,31 @@ export default function HomePage() {
         toggleMenu={toggleMenu}
         loggout={loggout}
       />
+      <div className="home-buttons-container">
+        {exams.map(exam => {
+          return (
+            <Button
+              name={exam.urlLabel}
+              className='exam-button'
+              onClick={() => {
+                setLoadExam(exam.urlLabel);
+                requestExamInformation()
+              }}
+            >
+              {exam.label}
+            </Button>
+          )
+        })}
+      </div>
       <div className="chart-container">
         <Row id="first-row-chart">
-            {Object.keys(colestrerolResults[0]).map(key => {
-              if(key === 'data' || auxCounter > 3) {
+            {result.length > 0 && Object.keys(result[0]).map(key => {
+              const excludedParams = ['descricao', 'data', 'id'];
+              if(excludedParams.includes(key) || auxCounter > 3) {
                 return null
               }
               config.yField = key;
+              config.color = colors[auxCounter];
               auxCounter += 1;
               return (
                 <Col span={11}>

@@ -33,10 +33,6 @@
   margin-bottom: 40px;
 }
 
-.chart-container #second-row-chart {
-  height: 230px;
-}
-
 .chart-container .ant-row .ant-col {
   height: 100%;
 }
@@ -57,4 +53,16 @@
   border-bottom: 1px solid #cfcfcf;
   border-radius: 3px 3px 0 0;
   font-weight: bold;
+}
+
+.home-buttons-container {
+  align-self: center;
+}
+
+.exam-button {
+  margin: 0px 5px;
+  border-radius: 4px;
+  padding: 10px;
+  font-weight: bold;
+  
 }
