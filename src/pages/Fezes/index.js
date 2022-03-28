@@ -4,10 +4,10 @@ import 'antd/dist/antd.css';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
 import DefaultMenu from '../../components/DefaultMenu';
-import HemogramaForm from './form';
+import FezesForm from './form';
 import './style.css';
 
-class Hemograma extends React.Component {
+class Fezes extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -15,29 +15,49 @@ class Hemograma extends React.Component {
       showNovo: false,
       registros: [
         {
-          descricao:
-            'Descrição descricao descricao Descrição descricao descricao ',
+          descricao: 'descrição',
           data: '2022-03-21T10:15:30',
-          hemoglobina: 1.5,
-          hemacrotito: 2.5,
-          hematimetria: 3.5,
-          reticulocitos: 4.5,
-          volumeCorpuscular: 5.5,
-          hemoglobinaCorpuscular: 6.5,
-          concentracaoHemoglobina: 7.5,
-          indiceAnisocitose: 8.5
+          aspectoGeral: 'Aspecto geral',
+          protozoarios: 'Protozoários',
+          helmintos: 'Helmintos',
+          metodo: 'Método',
+          observacoes: 'Observações'
         },
         {
-          descricao: 'Descrição',
+          descricao: 'descrição',
           data: '2022-03-21T10:15:30',
-          hemoglobina: 1.5,
-          hemacrotito: 2.5,
-          hematimetria: 3.5,
-          reticulocitos: 4.5,
-          volumeCorpuscular: 5.5,
-          hemoglobinaCorpuscular: 6.5,
-          concentracaoHemoglobina: 7.5,
-          indiceAnisocitose: 8.5
+          aspectoGeral: 'Aspecto geral',
+          protozoarios: 'Protozoários',
+          helmintos: 'Helmintos',
+          metodo: 'Método',
+          observacoes: 'Observações'
+        },
+        {
+          descricao: 'descrição',
+          data: '2022-03-21T10:15:30',
+          aspectoGeral: 'Aspecto geral',
+          protozoarios: 'Protozoários',
+          helmintos: 'Helmintos',
+          metodo: 'Método',
+          observacoes: 'Observações'
+        },
+        {
+          descricao: 'descrição',
+          data: '2022-03-21T10:15:30',
+          aspectoGeral: 'Aspecto geral',
+          protozoarios: 'Protozoários',
+          helmintos: 'Helmintos',
+          metodo: 'Método',
+          observacoes: 'Observações'
+        },
+        {
+          descricao: 'descrição',
+          data: '2022-03-21T10:15:30',
+          aspectoGeral: 'Aspecto geral',
+          protozoarios: 'Protozoários',
+          helmintos: 'Helmintos',
+          metodo: 'Método',
+          observacoes: 'Observações'
         }
       ]
     };
@@ -74,67 +94,49 @@ class Hemograma extends React.Component {
         fixed: 'left'
       },
       {
-        title: 'Descricao',
+        title: 'Descrição',
         fixed: 'left',
         width: 300,
         dataIndex: 'descricao',
         key: 'descricao'
       },
       {
-        title: 'Hemoglobina',
+        title: 'Aspecto Geral',
         width: 150,
-        dataIndex: 'hemoglobina',
-        key: 'hemoglobina'
+        dataIndex: 'aspectoGeral',
+        key: 'aspectoGeral'
       },
       {
-        title: 'Hematimetria',
+        title: 'Protozoários',
         width: 150,
-        dataIndex: 'hematimetria',
-        key: 'hematimetria'
+        dataIndex: 'protozoarios',
+        key: 'protozoarios'
       },
       {
-        title: 'Hemacrotito',
+        title: 'Helmintos',
         width: 150,
-        dataIndex: 'hemacrotito',
-        key: 'hemacrotito'
+        dataIndex: 'helmintos',
+        key: 'helmintos'
       },
       {
-        title: 'Reticulocitos',
+        title: 'Método',
         width: 150,
-        dataIndex: 'reticulocitos',
-        key: 'reticulocitos'
+        dataIndex: 'metodo',
+        key: 'metodo'
       },
       {
-        title: 'Volume Corpuscular',
-        dataIndex: 'volumeCorpuscular',
+        title: 'Observações',
         width: 150,
-        key: 'volumeCorpuscular'
-      },
-      {
-        title: 'Hemoglobina Corpuscular',
-        dataIndex: 'hemoglobinaCorpuscular',
-        width: 150,
-        key: 'hemoglobinaCorpuscular'
-      },
-      {
-        title: 'Concentracao de Hemoglobina',
-        width: 150,
-        dataIndex: 'concentracaoHemoglobina',
-        key: 'concentracaoHemoglobina'
-      },
-      {
-        title: 'Indice Anisocitose',
-        width: 150,
-        dataIndex: 'indiceAnisocitose',
-        key: 'indiceAnisocitose'
+        dataIndex: 'observacoes',
+        key: 'observacoes'
       }
     ];
     return (
-      <div className="Hemograma-container">
+      <div className="Fezes-container">
         <DefaultHeader username="Username" toggleMenu={this.toggleMenu} />
         <div>
           <Card
-            title="Hemograma"
+            title="Fezes"
             extra={
               <Button type="primary" onClick={() => this.toggleNovo()}>
                 Novo
@@ -151,7 +153,7 @@ class Hemograma extends React.Component {
         </div>
         <DefaultFooter />
 
-        <HemogramaForm
+        <FezesForm
           registros={this.state.registros}
           showNovo={this.state.showNovo}
           toogleNovo={this.toggleNovo}
@@ -166,4 +168,4 @@ class Hemograma extends React.Component {
   }
 }
 
-export default Hemograma;
+export default Fezes;
