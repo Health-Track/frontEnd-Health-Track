@@ -7,7 +7,7 @@ import DefaultMenu from '../../components/DefaultMenu';
 import FezesForm from './form';
 import './style.css';
 
-class Colesterol extends React.Component {
+class Fezes extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -168,4 +168,4 @@ class Colesterol extends React.Component {
   }
 }
 
-export default Colesterol;
+export default Fezes;
