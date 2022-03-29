@@ -1,148 +1,149 @@
-import React from 'react';
-import { Button, Drawer, Form, Input } from 'antd';
+import React, { useCallback } from 'react';
+import { Button, Drawer, Form, Input, notification } from 'antd';
+import { CheckCircleOutlined, WarningFilled } from '@ant-design/icons';
 
-import 'antd/dist/antd.css';
+import api from '../../services/apiClient';
+import useForm from '../../hooks/useForm';
+
 import './style.css';
 
-class ColesterolForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      descricao: '',
-      data: '',
-      colesterolTotal: '',
-      colesterolHDL: '',
-      colesterolNaoHDL: '',
-      colesterolLDL: '',
-      relacaoTotalHDL: ''
-    };
-  }
+function ColesterolForm(props) {
+  const initialValue = {
+    descricao: '',
+    data: '',
+    colesterolTotal: '',
+    colesterolHDL: '',
+    colesterolNaoHDL: '',
+    colesterolLDL: '',
+    relacaoTotalHDL: ''
+  };
 
-  handleChange(e) {
-    this.setState(() => ({
-      [e.target.name]: e.target.value
-    }));
-  }
+  const { handleChange, values, clearForm } = useForm(initialValue)
 
-  requestLogin() {
-    this.props.registros.push(this.state);
-    this.limparForm();
-    this.props.toogleNovo();
-  }
+  const submitExam = useCallback(async () => {
+    await api.post('/exame/colesterol', {
+      dataMedicao: values.data,
+      ...values
+    }).then(() => {
+      notification.success({
+        message: 'Cadastro Efetuado',
+        description: 'Seu cadastro foi concluído!',
+        icon: <CheckCircleOutlined style={{ color: '#28730a' }} />,
+        placement: 'topLeft'
 
-  limparForm() {
-    this.setState({
-      descricao: '',
-      data: '',
-      colesterolTotal: '',
-      colesterolHDL: '',
-      colesterolNaoHDL: '',
-      colesterolLDL: '',
-      relacaoTotalHDL: ''
-    });
-  }
+      });
+      clearForm()
+      props.toogleNovo();
+    }).catch(() => {
+      notification.warning({
+        message: 'Erro',
+        description: 'Erro ao cadastrar seu exame. Tente novamente.',
+        icon: <WarningFilled style={{ color: '#e70f0f' }} />
+      });
+    })
+  })
 
-  render() {
-    return (
-      <Drawer
-        title="Exame de Colesterol"
-        visible={this.props.showNovo}
-        onClose={this.props.toogleNovo}
-        placement="right"
-      >
-        <Form>
-          <Form.Item
-            label="Data"
-            rules={[{ required: true, message: 'Escolha a data do exame!' }]}
+  return (
+    <Drawer
+      title="Exame de Colesterol"
+      visible={props.showNovo}
+      onClose={props.toogleNovo}
+      placement="right"
+    >
+      <Form>
+        <Form.Item
+          label="Data"
+          rules={[{ required: true, message: 'Escolha a data do exame!' }]}
+        >
+          <Input
+            id="data"
+            value={values.data}
+            placeholder="Selecione uma data"
+            name="data"
+            onChange={handleChange}
+            className="health-track-input"
+            type='datetime-local'
+          />
+        </Form.Item>
+        <Form.Item
+          label="Descricao"
+          rules={[
+            { required: true, message: 'Dê uma descrição para o Colesterol!' }
+          ]}
+        >
+          <Input
+            type="input"
+            id="descricao"
+            value={values.descricao}
+            name="descricao"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item label="Colesterol Total">
+          <Input
+            type="input"
+            id="colesterolTotal"
+            value={values.colesterolTotal}
+            name="colesterolTotal"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item label="Colesterol HDL">
+          <Input
+            type="input"
+            id="colesterolHDL"
+            value={values.colesterolHDL}
+            name="colesterolHDL"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item label="Colesterol Nao HDL">
+          <Input
+            type="input"
+            id="colesterolNaoHDL"
+            value={values.colesterolNaoHDL}
+            name="colesterolNaoHDL"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item label="Colesterol LDL">
+          <Input
+            type="input"
+            id="colesterolLDL"
+            value={values.colesterolLDL}
+            name="colesterolLDL"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item label="Relacao Total HDL">
+          <Input
+            type="input"
+            id="relacaoTotalHDL"
+            value={values.relacaoTotalHDL}
+            name="relacaoTotalHDL"
+            onChange={handleChange}
+            className="health-track-input"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={submitExam}
+            style={{ width: '100%' }}
           >
-            <Input
-              id="data"
-              value={this.state.data}
-              placeholder="Selecione uma data"
-              name="data"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item
-            label="Descricao"
-            rules={[
-              { required: true, message: 'Dê uma descrição para o Colesterol!' }
-            ]}
-          >
-            <Input
-              type="input"
-              id="descricao"
-              value={this.state.descricao}
-              name="descricao"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Colesterol Total">
-            <Input
-              type="input"
-              id="colesterolTotal"
-              value={this.state.colesterolTotal}
-              name="colesterolTotal"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Colesterol HDL">
-            <Input
-              type="input"
-              id="colesterolHDL"
-              value={this.state.colesterolHDL}
-              name="colesterolHDL"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Colesterol Nao HDL">
-            <Input
-              type="input"
-              id="colesterolNaoHDL"
-              value={this.state.colesterolNaoHDL}
-              name="colesterolNaoHDL"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Colesterol LDL">
-            <Input
-              type="input"
-              id="colesterolLDL"
-              value={this.state.colesterolLDL}
-              name="colesterolLDL"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item label="Relacao Total HDL">
-            <Input
-              type="input"
-              id="relacaoTotalHDL"
-              value={this.state.relacaoTotalHDL}
-              name="relacaoTotalHDL"
-              onChange={e => this.handleChange(e)}
-              className="health-track-input"
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={() => this.requestLogin()}
-              style={{ width: '100%' }}
-            >
-              Salvar
-            </Button>
-          </Form.Item>
-        </Form>
-      </Drawer>
-    );
-  }
+            Salvar
+          </Button>
+        </Form.Item>
+      </Form>
+    </Drawer>
+  );
+
 }
 
 export default ColesterolForm;

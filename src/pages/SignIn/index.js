@@ -27,6 +27,7 @@ function Signin() {
           senha: password
         })
         .then(resp => {
+          localStorage.setItem('@Health-track:email', email)
           localStorage.setItem('@Health-track:token', resp.data.token)
           navigate('/home-page');
         })

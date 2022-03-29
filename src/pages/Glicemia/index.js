@@ -4,96 +4,67 @@ import { Button, Card, Table } from 'antd';
 import DefaultFooter from '../../components/DefaultFooter';
 import DefaultHeader from '../../components/DeafultHeader';
 import DefaultMenu from '../../components/DefaultMenu';
-import ColesterolForm from './form';
+import GlicemiaForm from './form';
 import api from '../../services/apiClient';
 
 import './style.css';
 
-export default function Colesterol() {
+export default function Glicemia() {
   const [showMenu, setShowMenu] = useState(false);
   const [showNovoRegistroMenu, setShowNovoRegistroMenu] = useState(false);
   const [registros, setRegistros] = useState([]);
 
   const toggleNovoRegistroMenu = () => {
     setShowNovoRegistroMenu(!showNovoRegistroMenu);
-  }
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
-  }
+  };
 
   const columns = [
     {
-      title: 'Data',
-      dataIndex: 'data',
-      key: 'data',
+      title: 'Medição',
+      dataIndex: 'medicao',
+      key: 'medicao',
       width: 150,
       fixed: 'left'
     },
     {
-      title: 'Descrição',
+      title: 'Data Medição',
       fixed: 'left',
       width: 300,
-      dataIndex: 'descricao',
-      key: 'descricao'
-    },
-    {
-      title: 'Colesterol Total',
-      width: 150,
-      dataIndex: 'colesterolTotal',
-      key: 'colesterolTotal'
-    },
-    {
-      title: 'Colesterol HDL',
-      width: 150,
-      dataIndex: 'colesterolHDL',
-      key: 'colesterolHDL'
-    },
-    {
-      title: 'Colesterol Nao HDL',
-      width: 150,
-      dataIndex: 'colesterolNaoHDL',
-      key: 'colesterolNaoHDL'
-    },
-    {
-      title: 'Colesterol LDL',
-      width: 150,
-      dataIndex: 'colesterolLDL',
-      key: 'colesterolLDL'
-    },
-    {
-      title: 'Relacao Total HDL',
-      dataIndex: 'relacaoTotalHDL',
-      width: 150,
-      key: 'relacaoTotalHDL'
+      dataIndex: 'data',
+      key: 'data'
     }
   ];
 
   useEffect(() => {
-    loadColesterolExams();
+    loadGlicemiaExams();
   }, [registros]);
 
-  const loadColesterolExams = useCallback(async () => {
-    await api.get('/exame/colesterol/listar')
-             .then(resp => {
-                setRegistros([...resp.data])
-             })
-  })
+  const loadGlicemiaExams = useCallback(async () => {
+    await api
+      .get('/exame/glicemia/listar')
+      .then(resp => {
+        setRegistros([...resp.data]);
+      })
+  });
 
   return (
-    <div className="Colesterol-container">
+    <div className="Glicemia-container">
       <DefaultHeader username="Username" toggleMenu={toggleMenu} />
       <div>
         <Card
-          title="Colesterol"
+          title="Glicemia"
           extra={
             <Button type="primary" onClick={toggleNovoRegistroMenu}>
               Novo
             </Button>
           }
         >
-          {registros.length > 0 &&
-          <Table
+          {registros.length > 0 && (
+            <Table
               dataSource={registros.map((item, idx) => {
                 item.key = idx;
                 return item;
@@ -101,22 +72,19 @@ export default function Colesterol() {
               columns={columns}
               scroll={{ x: 1500, y: 350 }}
               pagination={false}
-          />}
+            />
+          )}
         </Card>
       </div>
       <DefaultFooter />
 
-      <ColesterolForm
+      <GlicemiaForm
         registros={registros}
         showNovo={showNovoRegistroMenu}
         toogleNovo={toggleNovoRegistroMenu}
       />
 
-      <DefaultMenu
-        showMenu={showMenu}
-        toggleMenu={toggleMenu}
-      />
+      <DefaultMenu showMenu={showMenu} toggleMenu={toggleMenu} />
     </div>
   );
-
 }
