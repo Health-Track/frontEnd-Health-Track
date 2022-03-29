@@ -34,8 +34,8 @@ export default function Glicemia() {
       title: 'Data Medição',
       fixed: 'left',
       width: 300,
-      dataIndex: 'dataMedicao',
-      key: 'dataMedicao'
+      dataIndex: 'data',
+      key: 'data'
     }
   ];
 
@@ -49,9 +49,6 @@ export default function Glicemia() {
       .then(resp => {
         setRegistros([...resp.data]);
       })
-      .catch(err => {
-        console.log(err);
-      });
   });
 
   return (

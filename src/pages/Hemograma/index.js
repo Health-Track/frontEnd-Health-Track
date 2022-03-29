@@ -97,9 +97,6 @@ function Hemograma() {
              .then(resp => {
                 setRegistros([...resp.data])
              })
-             .catch(err => {
-                console.log(err);
-             })
   })
 
   return (
