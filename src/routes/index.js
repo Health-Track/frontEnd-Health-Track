@@ -8,6 +8,7 @@ import HomePage from '../pages/HomePage';
 import Hemograma from '../pages/Hemograma';
 import Colesterol from '../pages/Colesterol';
 import Fezes from '../pages/Fezes';
+import Glicemia from '../pages/Glicemia';
 
 function HealthTrackRoutes() {
   return (
@@ -19,6 +20,7 @@ function HealthTrackRoutes() {
       <Route path="/hemograma" element={<Hemograma />} />
       <Route path="/colesterol" element={<Colesterol />} />
       <Route path="/fezes" element={<Fezes />} />
+      <Route path="/glicemia" element={<Glicemia />} />
     </Routes>
   );
 }

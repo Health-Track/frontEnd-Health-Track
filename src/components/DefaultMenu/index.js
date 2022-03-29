@@ -47,7 +47,11 @@ export default class DefaultMenu extends React.Component {
           <div className="link-menu">Pressão </div>
           <br />
 
-          <div className="link-menu">Glicemia</div>
+          <div>
+            <Link className="link-menu" to="/glicemia">
+              Glicemia
+            </Link>
+          </div>
           <br />
 
           <div className="link-menu">Urina </div>
