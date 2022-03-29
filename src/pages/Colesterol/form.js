@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-import { Button, Drawer, Form, Input } from 'antd';
+import { Button, Drawer, Form, Input, notification } from 'antd';
+import { CheckCircleOutlined, WarningFilled } from '@ant-design/icons';
 
 import api from '../../services/apiClient';
 import useForm from '../../hooks/useForm';
@@ -24,19 +25,23 @@ function ColesterolForm(props) {
       dataMedicao: values.data,
       ...values
     }).then(() => {
-      console.log("SUCCESS!!!")
+      notification.success({
+        message: 'Cadastro Efetuado',
+        description: 'Seu cadastro foi concluído!',
+        icon: <CheckCircleOutlined style={{ color: '#28730a' }} />,
+        placement: 'topLeft'
+
+      });
       clearForm()
       props.toogleNovo();
     }).catch(() => {
-      console.log("Erro ao cadastrar exame de colesterol");
+      notification.warning({
+        message: 'Erro',
+        description: 'Erro ao cadastrar seu exame. Tente novamente.',
+        icon: <WarningFilled style={{ color: '#e70f0f' }} />
+      });
     })
   })
-
-  // requestLogin() {
-  //   props.registros.push(state);
-  //   limparForm();
-  //   props.toogleNovo();
-  // }
 
   return (
     <Drawer

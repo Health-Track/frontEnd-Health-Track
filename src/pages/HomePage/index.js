@@ -68,7 +68,7 @@ export default function HomePage() {
 
   return (
     <div className="homepage-container">
-      <DefaultHeader username="Username" toggleMenu={toggleMenu} />
+      <DefaultHeader username={localStorage.getItem('@Health-track:email')} toggleMenu={toggleMenu} />
       <div className="home-buttons-container">
         {exams.map(exam => {
           return (
