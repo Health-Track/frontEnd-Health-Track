@@ -101,7 +101,7 @@ function Hemograma() {
 
   return (
     <div className="Hemograma-container">
-      <DefaultHeader username="Username" toggleMenu={toggleMenu} />
+      <DefaultHeader username={localStorage.getItem('@Health-track:email')} toggleMenu={toggleMenu} />
       <div>
         <Card
           title="Hemograma"

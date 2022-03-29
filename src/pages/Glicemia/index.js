@@ -53,7 +53,7 @@ export default function Glicemia() {
 
   return (
     <div className="Glicemia-container">
-      <DefaultHeader username="Username" toggleMenu={toggleMenu} />
+      <DefaultHeader username={localStorage.getItem('@Health-track:email')} toggleMenu={toggleMenu} />
       <div>
         <Card
           title="Glicemia"

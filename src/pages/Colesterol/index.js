@@ -82,7 +82,7 @@ export default function Colesterol() {
 
   return (
     <div className="Colesterol-container">
-      <DefaultHeader username="Username" toggleMenu={toggleMenu} />
+      <DefaultHeader username={localStorage.getItem('@Health-track:email')} toggleMenu={toggleMenu} />
       <div>
         <Card
           title="Colesterol"
